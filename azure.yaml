@@ -1,0 +1,74 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: bizcrm
+metadata:
+  template: bizcrm-enterprise@0.0.1-beta
+  
+services:
+  backend:
+    project: "./src/backend"
+    language: csharp
+    host: containerapp
+    docker:
+      path: "./Dockerfile"
+      context: "./src/backend"
+      
+  frontend:
+    project: "./src/frontend"
+    language: js
+    host: staticwebapp
+    dist: dist
+    
+infra:
+  provider: bicep
+  path: infra
+  
+pipeline:
+  provider: azdo
+  
+hooks:
+  preprovision:
+    windows:
+      shell: pwsh
+      run: |
+        Write-Host "Installing required tools..."
+        # Install Azure SQL Edge for local development
+        docker --version
+        
+  prepackage:
+    shell: sh
+    run: |
+      echo "Building application..."
+      
+  postprovision:
+    windows:
+      shell: pwsh
+      run: |
+        Write-Host "Running post-provision tasks..."
+        # Run database migrations
+        $env:AZURE_ENV_NAME = azd env get-values --output json | ConvertFrom-Json | Select-Object -ExpandProperty AZURE_ENV_NAME
+        Write-Host "Environment: $env:AZURE_ENV_NAME"
+        
+        # Get connection string from Key Vault
+        $connectionString = az keyvault secret show --vault-name "$(azd env get-values --output json | ConvertFrom-Json | Select-Object -ExpandProperty AZURE_KEY_VAULT_NAME)" --name "sql-connection-string" --query value -o tsv
+        if ($connectionString) {
+          Write-Host "Running Entity Framework migrations..."
+          $env:ConnectionStrings__DefaultConnection = $connectionString
+          dotnet ef database update --project ./src/backend --context ApplicationDbContext
+        }
+    
+    posix:
+      shell: sh
+      run: |
+        echo "Running post-provision tasks..."
+        # Run database migrations
+        export AZURE_ENV_NAME=$(azd env get-values --output json | jq -r .AZURE_ENV_NAME)
+        echo "Environment: $AZURE_ENV_NAME"
+        
+        # Get connection string from Key Vault
+        CONNECTION_STRING=$(az keyvault secret show --vault-name "$(azd env get-values --output json | jq -r .AZURE_KEY_VAULT_NAME)" --name "sql-connection-string" --query value -o tsv)
+        if [ ! -z "$CONNECTION_STRING" ]; then
+          echo "Running Entity Framework migrations..."
+          export ConnectionStrings__DefaultConnection="$CONNECTION_STRING"
+          dotnet ef database update --project ./src/backend --context ApplicationDbContext
+        fi
