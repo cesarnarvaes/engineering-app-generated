@@ -139,7 +139,7 @@
                   class="w-8 h-8 object-contain rounded"
                 />
                 <el-icon v-else class="text-gray-400">
-                  <Office />
+                  <OfficeBuilding />
                 </el-icon>
               </div>
               <div>
@@ -342,7 +342,7 @@ import {
   Edit,
   User,
   Link,
-  Office
+  OfficeBuilding
 } from '@element-plus/icons-vue'
 
 // Router

@@ -77,7 +77,7 @@
         <el-card shadow="hover" class="report-category-card">
           <div class="flex items-center">
             <div class="p-3 rounded-lg bg-purple-50">
-              <el-icon class="text-2xl text-purple-600"><Office /></el-icon>
+              <el-icon class="text-2xl text-purple-600"><OfficeBuilding /></el-icon>
             </div>
             <div class="ml-4">
               <h3 class="text-lg font-semibold text-gray-900">Companies</h3>
@@ -225,7 +225,7 @@
                 <template #dropdown>
                   <el-dropdown-menu>
                     <el-dropdown-item @click="duplicateReport(row.id)">
-                      <el-icon><Copy /></el-icon>
+                      <el-icon><CopyDocument /></el-icon>
                       Duplicate
                     </el-dropdown-item>
                     <el-dropdown-item @click="scheduleReport(row.id)">
@@ -340,12 +340,12 @@ import {
   Refresh,
   TrendCharts,
   User,
-  Office,
+  OfficeBuilding,
   DataAnalysis,
   Document,
   View,
   MoreFilled,
-  Copy,
+  CopyDocument,
   Timer,
   Share,
   Delete
@@ -607,7 +607,7 @@ const getCategoryIcon = (category) => {
   const icons = {
     Sales: TrendCharts,
     Activities: User,
-    Companies: Office,
+    Companies: OfficeBuilding,
     Custom: DataAnalysis
   }
   return icons[category] || Document

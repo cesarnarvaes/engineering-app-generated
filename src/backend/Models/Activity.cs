@@ -71,7 +71,7 @@ public enum ActivityType
     Task = 4,
     Appointment = 5,
     Note = 6,
-    Follow up = 7
+    FollowUp = 7
 }
 
 public enum ActivityStatus

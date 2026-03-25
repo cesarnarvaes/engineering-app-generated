@@ -327,7 +327,7 @@
                 >
                   <div class="flex items-center">
                     <el-icon class="text-green-600 mr-2">
-                      <CircleDot />
+                      <SuccessFilled />
                     </el-icon>
                     <div>
                       <p class="text-sm font-medium">{{ session.device }}</p>
@@ -365,7 +365,7 @@ import {
   Download,
   Document,
   Share,
-  CircleDot
+  SuccessFilled
 } from '@element-plus/icons-vue'
 
 // Reactive state

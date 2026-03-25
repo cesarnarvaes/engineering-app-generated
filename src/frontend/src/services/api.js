@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useAuthStore } from '@/stores/auth'
-import { useNotificationStore } from '@/stores/notifications'
+import { useNotificationsStore } from '@/stores/notifications'
 import router from '@/router'
 
 // Create axios instance
@@ -48,7 +48,7 @@ api.interceptors.response.use(
   },
   async (error) => {
     const authStore = useAuthStore()
-    const notificationStore = useNotificationStore()
+    const notificationStore = useNotificationsStore()
     const originalRequest = error.config
     
     // Handle 401 Unauthorized

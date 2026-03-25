@@ -11,12 +11,18 @@ using BizCrm.Backend.Models;
 using BizCrm.Backend.Services;
 using BizCrm.Backend.Hubs;
 using BizCrm.Backend.Endpoints;
+using BizCrm.Backend.Infrastructure;
+using BizCrm.Backend;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure Azure Key Vault (for production)
+// TODO: Fix Azure Key Vault configuration when deploying to production
+/*
 if (builder.Environment.IsProduction())
 {
     var keyVaultUrl = builder.Configuration["AZURE_KEY_VAULT_URL"];
@@ -27,6 +33,7 @@ if (builder.Environment.IsProduction())
             new DefaultAzureCredential());
     }
 }
+*/
 
 // Database configuration
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
@@ -165,14 +172,24 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins(
-                "http://localhost:3000",  // Vue.js dev server
-                "https://localhost:3000",
-                "https://*.azurestaticapps.net"  // Production frontend
-            )
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials(); // Required for SignalR
+        if (builder.Environment.IsDevelopment())
+        {
+            // Allow any localhost origin in development
+            policy.SetIsOriginAllowed(origin => 
+                Uri.TryCreate(origin, UriKind.Absolute, out var uri) &&
+                (uri.Host == "localhost" || uri.Host == "127.0.0.1"))
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials(); // Required for SignalR
+        }
+        else
+        {
+            // Restrict origins in production
+            policy.WithOrigins("https://*.azurestaticapps.net")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+        }
     });
 });
 

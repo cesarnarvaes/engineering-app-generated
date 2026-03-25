@@ -378,7 +378,7 @@
                 <template #dropdown>
                   <el-dropdown-menu>
                     <el-dropdown-item @click="duplicateActivity(row.id)">
-                      <el-icon><Copy /></el-icon>
+                      <el-icon><CopyDocument /></el-icon>
                       Duplicate
                     </el-dropdown-item>
                     <el-dropdown-item @click="rescheduleActivity(row.id)">
@@ -572,7 +572,7 @@ import {
   DataLine,
   Edit,
   MoreFilled,
-  Copy,
+  CopyDocument,
   ArrowLeft,
   ArrowRight,
   Phone,

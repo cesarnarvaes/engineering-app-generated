@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import api from '@/services/api'
-import { useNotificationStore } from './notifications'
+import { useNotificationsStore } from './notifications'
 import { useSignalRStore } from './signalr'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   // Actions
   async function login(credentials) {
-    const notificationStore = useNotificationStore()
+    const notificationStore = useNotificationsStore()
     const signalRStore = useSignalRStore()
     
     loading.value = true
@@ -84,7 +84,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function logout() {
-    const notificationStore = useNotificationStore()
+    const notificationStore = useNotificationsStore()
     const signalRStore = useSignalRStore()
     
     try {
@@ -179,7 +179,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function changePassword(currentPassword, newPassword) {
-    const notificationStore = useNotificationStore()
+    const notificationStore = useNotificationsStore()
     
     try {
       const response = await api.post('/auth/change-password', {

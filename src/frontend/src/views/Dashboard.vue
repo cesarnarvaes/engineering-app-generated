@@ -269,7 +269,7 @@ import {
 // Icons
 import {
   User,
-  Office,
+  OfficeBuilding,
   TrendCharts,
   Calendar,
   Clock,
@@ -319,7 +319,7 @@ const quickStats = ref([
     change: -3,
     trend: 'down',
     color: 'yellow',
-    icon: 'Office'
+    icon: 'OfficeBuilding'
   },
   {
     title: 'Tasks Due Today',
@@ -387,7 +387,7 @@ const pipelineChartOptions = ref({
 // Quick actions
 const quickActions = ref([
   { key: 'add-contact', text: 'Add Contact', icon: 'User', type: 'primary' },
-  { key: 'add-company', text: 'Add Company', icon: 'Office', type: 'success' },
+  { key: 'add-company', text: 'Add Company', icon: 'OfficeBuilding', type: 'success' },
   { key: 'add-opportunity', text: 'Add Opportunity', icon: 'TrendCharts', type: 'warning' },
   { key: 'schedule-call', text: 'Schedule Call', icon: 'Phone', type: 'info' }
 ])

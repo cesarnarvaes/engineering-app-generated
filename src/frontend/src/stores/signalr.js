@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { HubConnectionBuilder, LogLevel, HubConnectionState } from '@microsoft/signalr'
-import { useNotificationStore } from './notifications'
+import { useNotificationsStore } from './notifications'
 import { useAuthStore } from './auth'
 
 export const useSignalRStore = defineStore('signalr', () => {
@@ -20,7 +20,7 @@ export const useSignalRStore = defineStore('signalr', () => {
   // Actions
   async function connect() {
     const authStore = useAuthStore()
-    const notificationStore = useNotificationStore()
+    const notificationStore = useNotificationsStore()
     
     if (!authStore.token || connection.value) {
       return

@@ -11,7 +11,7 @@
       <div class="flex items-center justify-between h-16 px-6 border-b border-gray-200">
         <div class="flex items-center">
           <el-icon class="text-2xl text-blue-600 mr-3">
-            <Office />
+            <OfficeBuilding />
           </el-icon>
           <h1 class="text-xl font-bold text-gray-900">BizCRM</h1>
         </div>
@@ -43,7 +43,7 @@
 
           <el-sub-menu index="companies" class="menu-item">
             <template #title>
-              <el-icon><Office /></el-icon>
+              <el-icon><OfficeBuilding /></el-icon>
               <span>Companies</span>
             </template>
             <el-menu-item index="companies/list">All Companies</el-menu-item>
@@ -115,10 +115,10 @@ import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { 
   Close,
-  House, 
-  User, 
-  Office, 
-  TrendCharts, 
+  House,
+  User,
+  OfficeBuilding,
+  TrendCharts,
   Calendar, 
   DataAnalysis, 
   Setting, 

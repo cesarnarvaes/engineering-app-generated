@@ -60,6 +60,18 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .HasForeignKey(o => o.AssignedToId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        builder.Entity<Opportunity>()
+            .HasOne(o => o.CreatedBy)
+            .WithMany()
+            .HasForeignKey(o => o.CreatedById)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Opportunity>()
+            .HasOne(o => o.LastModifiedBy)
+            .WithMany()
+            .HasForeignKey(o => o.LastModifiedById)
+            .OnDelete(DeleteBehavior.Restrict);
+
         // Activity relationships
         builder.Entity<Activity>()
             .HasOne(a => a.Contact)
@@ -78,6 +90,24 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .WithMany(o => o.Activities)
             .HasForeignKey(a => a.OpportunityId)
             .OnDelete(DeleteBehavior.SetNull);
+
+        builder.Entity<Activity>()
+            .HasOne(a => a.AssignedTo)
+            .WithMany()
+            .HasForeignKey(a => a.AssignedToId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Activity>()
+            .HasOne(a => a.CreatedBy)
+            .WithMany()
+            .HasForeignKey(a => a.CreatedById)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Activity>()
+            .HasOne(a => a.LastModifiedBy)
+            .WithMany()
+            .HasForeignKey(a => a.LastModifiedById)
+            .OnDelete(DeleteBehavior.Restrict);
 
         // Indexes for performance
         builder.Entity<Contact>()

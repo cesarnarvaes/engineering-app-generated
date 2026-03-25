@@ -49,7 +49,7 @@
                 New Contact
               </el-dropdown-item>
               <el-dropdown-item @click="handleQuickAction('company')">
-                <el-icon><Office /></el-icon>
+                <el-icon><OfficeBuilding /></el-icon>
                 New Company
               </el-dropdown-item>
               <el-dropdown-item @click="handleQuickAction('opportunity')">
@@ -150,7 +150,7 @@ import {
   Plus,
   ArrowDown,
   User,
-  Office,
+  OfficeBuilding,
   TrendCharts,
   Calendar,
   Bell,

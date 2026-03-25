@@ -97,7 +97,7 @@
           <template #header>
             <div class="flex items-center">
               <el-icon class="mr-2 text-blue-600">
-                <Office />
+                <OfficeBuilding />
               </el-icon>
               <span class="text-lg font-semibold">Company Information</span>
             </div>
@@ -414,7 +414,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { format } from 'date-fns'
 import {
   ArrowLeft,
-  Office,
+  OfficeBuilding,
   Link,
   Message,
   Edit,

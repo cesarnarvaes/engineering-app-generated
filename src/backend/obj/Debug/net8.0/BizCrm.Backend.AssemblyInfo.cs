@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BizCrm.Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa33d6aaacc1bc305e3356a4a9bb72ea3c9dcd8d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b74b03d84bfe0de9362cf882ddd778429d253dbd")]
 [assembly: System.Reflection.AssemblyProductAttribute("BizCrm.Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BizCrm.Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

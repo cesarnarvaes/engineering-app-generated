@@ -5,7 +5,7 @@
       <div class="text-center">
         <div class="flex justify-center items-center mb-6">
           <el-icon class="text-4xl text-blue-600 mr-3">
-            <Office />
+            <OfficeBuilding />
           </el-icon>
           <h1 class="text-3xl font-bold text-gray-900">BizCRM</h1>
         </div>
@@ -161,7 +161,7 @@ import { ref, reactive} from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ElMessage } from 'element-plus'
-import { Office, User, Message, Lock } from '@element-plus/icons-vue'
+import { OfficeBuilding, User, Message, Lock } from '@element-plus/icons-vue'
 
 // Router and stores
 const router = useRouter()

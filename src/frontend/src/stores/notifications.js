@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useToast } from 'vue-toastification'
 
-export const useNotificationStore = defineStore('notifications', () => {
+export const useNotificationsStore = defineStore('notifications', () => {
   // State
   const notifications = ref([])
   const unreadCount = ref(0)

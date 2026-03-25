@@ -1,0 +1,5 @@
+src/backend/bin/*
+src/backend/obj/*
+src/frontend/node_modules/*
+src/frontend/dist/*
+bash.exe.stackdump

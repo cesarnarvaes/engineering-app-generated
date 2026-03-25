@@ -13,14 +13,18 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true, // Listen on all addresses
+    open: true, // Automatically open browser
+    hmr: {
+      overlay: true // Show error overlay on the page
+    },
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://localhost:5001',
         changeOrigin: true,
         secure: false
       },
       '/hubs': {
-        target: 'http://localhost:5000',
+        target: 'http://localhost:5001',
         changeOrigin: true,
         secure: false,
         ws: true // Enable WebSocket proxying

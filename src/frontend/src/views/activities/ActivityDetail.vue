@@ -104,7 +104,7 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item @click="duplicateActivity">
-                <el-icon><Copy /></el-icon>
+                <el-icon><CopyDocument /></el-icon>
                 Duplicate
               </el-dropdown-item>
               <el-dropdown-item @click="rescheduleActivity">
@@ -705,7 +705,7 @@ import {
   RefreshLeft,
   Edit,
   MoreFilled,
-  Copy,
+  CopyDocument,
   Calendar,
   Switch,
   Delete,
